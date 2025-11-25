@@ -1,17 +1,16 @@
-# 📚 Document Q&A Assistant
+#  Document Q&A Assistant
 
 A Streamlit-based application that allows you to upload documents and ask questions about them using AI. The app uses RAG (Retrieval-Augmented Generation) to provide accurate answers based on your documents.
-
-## ✨ Features
+For testing purposes I have used one example document which you can view in the uploads folder. 
+## Features
 
 - **Document Upload**: Support for PDF, TXT, and DOCX files
 - **AI-Powered Q&A**: Ask natural language questions about your documents
-- **Source Citations**: View the specific document chunks used to generate answers
 - **Persistent Storage**: ChromaDB vector database for efficient retrieval
 - **Customizable**: Adjust LLM parameters (model, temperature, retrieval count)
 - **Chat History**: Keep track of your conversation
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Install Dependencies
 
@@ -28,7 +27,7 @@ You have two options:
 
 **Option B: Use environment variable**
 ```bash
-export OPENAI_API_KEY="your-api-key-here"
+export GOOGLE_API_KEY="your-api-key-here"
 ```
 
 ### 3. Run the Application
@@ -39,19 +38,8 @@ streamlit run app.py
 
 The app will open in your default browser at `http://localhost:8501`
 
-## 📖 How to Use
 
-1. **Enter API Key**: In the sidebar, enter your OpenAI API key
-2. **Configure Settings**: 
-   - Choose your preferred LLM model (gpt-3.5-turbo, gpt-4, etc.)
-   - Adjust temperature for response creativity
-   - Set number of document chunks to retrieve
-3. **Upload Documents**: Click "Browse files" and select your documents (PDF, TXT, or DOCX)
-4. **Process Documents**: Click "Process Documents" to index your files
-5. **Ask Questions**: Type your questions in the chat input at the bottom
-6. **View Sources**: Expand the "View Sources" section to see which document chunks were used
-
-## 🏗️ Architecture
+## Architecture
 
 ```
 User Query
@@ -60,12 +48,12 @@ Question Processing
     ↓
 Vector Search (ChromaDB) → Retrieve Relevant Chunks
     ↓
-LLM Generation (OpenAI) → Generate Answer + Sources
+LLM Generation (GEMINI) → Generate Answer using relevant chunks
     ↓
 Display Response
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 document_extraction_sample/
@@ -76,20 +64,19 @@ document_extraction_sample/
 └── chroma_db/            # Vector database storage
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 ### Default Settings
 
-- **Chunk Size**: 500 characters
-- **Chunk Overlap**: 50 characters
+- **Chunk Size**: 2000 characters
+- **Chunk Overlap**: 400 characters
 - **Embedding Model**: all-MiniLM-L6-v2 (HuggingFace)
-- **Default LLM**: gpt-3.5-turbo
+- **Default LLM**: gemini-2.5-pro
 - **Default Temperature**: 0.7
 - **Default Retrieval**: 3 documents
 
-You can modify these in the sidebar or in the `app.py` file.
+You can modify these in the extraction.py and app.py code according to your requirements.
 
-## 🔧 Advanced Usage
 
 ### Using Existing Vector Database
 
@@ -103,43 +90,7 @@ You can still use the original `extraction.py` script to process documents in ba
 python extraction.py
 ```
 
-## 🛠️ Troubleshooting
-
-### "No documents found"
-- Make sure you've uploaded and processed documents using the sidebar
-- Check that the `uploads/` directory contains your files
-
-### "Error loading vector store"
-- Delete the `chroma_db/` directory and reprocess your documents
-- Ensure you have write permissions in the project directory
-
-### "OpenAI API Error"
-- Verify your API key is correct
-- Check your OpenAI account has sufficient credits
-- Ensure you have internet connectivity
-
-## 📝 Example Questions
-
-- "What is the main topic of this document?"
-- "Summarize the key points about [specific topic]"
-- "What does the document say about [specific question]?"
-- "Find information related to [keyword]"
-
-## 🔐 Security Notes
-
-- Never commit your API keys to version control
-- The API key entered in the sidebar is only stored in the session
-- Consider using environment variables for production deployments
-
-## 🤝 Contributing
-
-Feel free to enhance this application by:
-- Adding support for more document types
-- Implementing different LLM providers (Anthropic, Cohere, etc.)
-- Adding document management features
-- Improving the UI/UX
-
-## 📄 License
+## License
 
 This is a sample project for educational purposes.
 
