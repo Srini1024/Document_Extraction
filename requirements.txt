@@ -1,0 +1,13 @@
+langchain-core
+langchain-text-splitters
+langchain-community
+langchain-google-genai>=2.0.0
+google-generativeai>=0.8.0
+langchain-huggingface
+pypdf
+docx2txt
+sentence-transformers
+chromadb
+streamlit
+langchain
+python-dotenv
