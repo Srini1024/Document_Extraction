@@ -1,12 +1,12 @@
 import streamlit as st
 import os
 from dotenv import load_dotenv
-
-load_dotenv()
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from extraction import load_and_chunk_files, get_vectorstore, load_vectorstore
 
+
+load_dotenv()
 try:
     from langchain_google_genai import ChatGoogleGenerativeAI
 except ImportError:
